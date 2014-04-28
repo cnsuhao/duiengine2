@@ -354,7 +354,7 @@ void CDuiListBox::DrawItem(CDCHandle & dc, CRect & rc, int iItem)
             crItemBg = m_crItemBg2;
     }
 
-    if ( (!m_bHotTrack && iItem == m_iSelItem) || (iItem == m_iHoverItem && m_bHotTrack))
+    if ( (!m_bHotTrack && iItem == m_iSelItem) || ((iItem == m_iHoverItem || (m_iHoverItem==-1 && iItem== m_iSelItem)) && m_bHotTrack))
     {
         if (m_pItemSkin != NULL)
             nBgImg = 2;
@@ -493,13 +493,8 @@ void CDuiListBox::OnMouseMove(UINT nFlags,CPoint pt)
 	{
 		if(nOldHover!=-1) RedrawItem(nOldHover);
 		if(m_iHoverItem!=-1) RedrawItem(m_iHoverItem);
+		if(m_iSelItem!=-1) RedrawItem(m_iSelItem);
 	}
-}
-
-void CDuiListBox::OnMouseLeave()
-{
-    if(m_iHoverItem!=-1)
-        m_iHoverItem = -1;
 }
 
 void CDuiListBox::OnKeyDown( TCHAR nChar, UINT nRepCnt, UINT nFlags )
@@ -543,6 +538,14 @@ void CDuiListBox::OnDestroy()
 {
     DeleteAll();
     __super::OnDestroy();
+}
+
+void CDuiListBox::OnShowWindow( BOOL bShow, UINT nStatus )
+{
+	if(!bShow)
+	{
+		m_iHoverItem=-1;
+	}
 }
 
 

@@ -111,13 +111,13 @@ protected:
 
     void OnMouseMove(UINT nFlags,CPoint pt);
 
-    void OnMouseLeave();
-
     void OnKeyDown( TCHAR nChar, UINT nRepCnt, UINT nFlags );
 
     void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 
     void OnDestroy();
+
+	void OnShowWindow(BOOL bShow, UINT nStatus);
 
 protected:
 
@@ -156,16 +156,16 @@ public:
     DUIWIN_DECLARE_ATTRIBUTES_END()
 
     DUIWIN_BEGIN_MSG_MAP()
-    MSG_WM_DESTROY(OnDestroy)
-    MSG_WM_SIZE(OnSize)
-    MSG_WM_PAINT(OnPaint)
-    MSG_WM_LBUTTONDOWN(OnLButtonDown)
-    MSG_WM_LBUTTONDBLCLK(OnLButtonDbClick)
-    MSG_WM_LBUTTONUP(OnLButtonUp)
-    MSG_WM_MOUSEMOVE(OnMouseMove)
-    MSG_WM_MOUSELEAVE(OnMouseLeave)
-    MSG_WM_KEYDOWN(OnKeyDown)
-    MSG_WM_CHAR(OnChar)
+		MSG_WM_DESTROY(OnDestroy)
+		MSG_WM_SIZE(OnSize)
+		MSG_WM_PAINT(OnPaint)
+		MSG_WM_LBUTTONDOWN(OnLButtonDown)
+		MSG_WM_LBUTTONDBLCLK(OnLButtonDbClick)
+		MSG_WM_LBUTTONUP(OnLButtonUp)
+		MSG_WM_MOUSEMOVE(OnMouseMove)
+		MSG_WM_KEYDOWN(OnKeyDown)
+		MSG_WM_CHAR(OnChar)
+		MSG_WM_SHOWWINDOW(OnShowWindow)
     DUIWIN_END_MSG_MAP()
 };
 
