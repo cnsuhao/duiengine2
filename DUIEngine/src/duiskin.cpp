@@ -24,13 +24,72 @@ CDuiSkinImgList::CDuiSkinImgList()
 ,m_nStates(1)
 ,m_bTile(FALSE)
 ,m_bVertical(FALSE)
+,m_bCache(FALSE)
+,m_memdc(NULL)
 {
 
 }
 
+CDuiSkinImgList::~CDuiSkinImgList()
+{
+	if(m_memdc)
+	{
+		m_memdc->SetBitmapOwner(TRUE);
+		delete m_memdc;
+	}
+}
+
+void CDuiSkinImgList::PrepareCache( HDC hdc,CSize & sz )
+{
+	DUIASSERT(m_bCache);
+	if(m_szTarget!=sz)
+	{
+		m_szTarget=sz;
+		CRect rcImg(0,0,sz.cx*GetStates(),sz.cy);
+		HBITMAP hBmp=CGdiAlpha::CreateBitmap32(hdc,rcImg.Width(),rcImg.Height());
+		if(!m_memdc)
+		{
+			m_memdc=new CMemDC(hdc,hBmp);
+		}else
+		{
+			m_memdc->SelectBitmap(hBmp);
+			m_memdc->SetBitmapOwner(TRUE);
+		}
+		CRect rc(CPoint(),sz);
+		for(int i=0;i<GetStates();i++)
+		{
+			_Draw(m_memdc->m_hDC,rc,i,0xFF);
+			rc.OffsetRect(sz.cx,0);
+		}
+	}
+}
+
 void CDuiSkinImgList::Draw(HDC dc, CRect rcDraw, DWORD dwState,BYTE byAlpha)
 {
-    if(m_pDuiImg)
+	if(m_bCache)
+	{
+		PrepareCache(dc,rcDraw.Size());
+		BLENDFUNCTION bf= {AC_SRC_OVER,0,0xFF,AC_SRC_ALPHA};
+		CRect rcClip;
+		GetClipBox(dc,&rcClip);
+		CRect rcInter;
+		rcInter.IntersectRect(rcDraw,rcClip);
+		AlphaBlend(dc,rcInter.left,rcInter.top,rcInter.Width(),rcInter.Height(),
+			m_memdc->m_hDC,
+			dwState*m_szTarget.cx+rcInter.left-rcDraw.left,
+			rcInter.top-rcDraw.top,
+			rcInter.Width(),
+			rcInter.Height(),
+			bf);
+	}else
+	{
+		_Draw(dc,rcDraw,dwState,byAlpha);
+	}
+}
+
+void CDuiSkinImgList::_Draw(HDC dc, CRect rcDraw, DWORD dwState,BYTE byAlpha)
+{
+	if(m_pDuiImg)
 	{
 		SIZE sz=GetSkinSize();
 		if(m_bVertical)
@@ -79,7 +138,7 @@ CDuiSkinImgFrame::CDuiSkinImgFrame()
 {
 }
 
-void CDuiSkinImgFrame::Draw(HDC dc, CRect rcDraw, DWORD dwState,BYTE byAlpha)
+void CDuiSkinImgFrame::_Draw(HDC dc, CRect rcDraw, DWORD dwState,BYTE byAlpha)
 {
     if(!m_pDuiImg) return;
 	SIZE sz=GetSkinSize();

@@ -8,6 +8,7 @@
 
 #pragma once
 #include "duiskinbase.h"
+#include "MemDC.h"
 
 namespace DuiEngine
 {
@@ -38,6 +39,7 @@ class DUI_EXP CDuiSkinImgList: public CDuiSkinBase
 
 public:
     CDuiSkinImgList();
+	virtual ~CDuiSkinImgList();
 
     virtual void Draw(HDC dc, CRect rcDraw, DWORD dwState,BYTE byAlpha);
 
@@ -68,16 +70,24 @@ public:
 	BOOL IsVertical(){return m_bVertical;}
 protected:
 	virtual void OnAttributeFinish(pugi::xml_node xmlNode);
+	virtual void PrepareCache(HDC hdc,CSize & sz);
+	virtual void _Draw(HDC dc, CRect rcDraw, DWORD dwState,BYTE byAlpha);
 
     LONG m_lSubImageWidth;
 	int  m_nStates;
     BOOL m_bTile;
 	BOOL m_bVertical;
+
+	BOOL m_bCache;
+	CMemDC * m_memdc;	
+	CSize  m_szTarget;
+
     DUIWIN_DECLARE_ATTRIBUTES_BEGIN()
     DUIWIN_INT_ATTRIBUTE("subwidth", m_lSubImageWidth, TRUE)
     DUIWIN_INT_ATTRIBUTE("tile", m_bTile, TRUE)
 	DUIWIN_INT_ATTRIBUTE("vertical", m_bVertical, TRUE)
 	DUIWIN_INT_ATTRIBUTE("states",m_nStates,TRUE)
+	DUIWIN_INT_ATTRIBUTE("cache",m_bCache,TRUE)
     DUIWIN_DECLARE_ATTRIBUTES_END()
 };
 
@@ -88,7 +98,6 @@ class DUI_EXP CDuiSkinImgFrame : public CDuiSkinImgList
 public:
     CDuiSkinImgFrame();
 
-    virtual void Draw(HDC dc, CRect rcDraw, DWORD dwState,BYTE byAlpha);
 
 	void SetMargin(const CRect rcMargin){m_rcMargin=rcMargin;}
 
@@ -102,6 +111,7 @@ public:
 
 	void SetBgColor(COLORREF cr){m_crBg=cr;}
 protected:
+	virtual void _Draw(HDC dc, CRect rcDraw, DWORD dwState,BYTE byAlpha);
 	virtual void OnAttributeFinish(pugi::xml_node xmlNode);
 
 	CRect m_rcMargin;
