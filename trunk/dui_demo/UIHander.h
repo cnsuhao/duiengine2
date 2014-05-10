@@ -50,6 +50,8 @@ protected:
 
 	bool OnListHeaderClick(CDuiWindow * pSender, LPDUINMHDR pNmhdr);
 
+	void OnBtnWebkitGo();
+
 	BEGIN_MSG_MAP_EX(CUIHander)
 		MSG_DUI_NOTIFY()
 		MSG_WM_INITDIALOG(OnInitDialog)
@@ -71,6 +73,7 @@ protected:
 		DUI_NOTIFY_ID_HANDLER(mylist2,DUINM_GETLBDISPINFO,OnListPredraw)
 
 		DUI_NOTIFY_ID_COMMAND(btn_ani,OnBtnAniList)
+		DUI_NOTIFY_NAME_COMMAND("btn_webkit_go",OnBtnWebkitGo)
 	DUI_NOTIFY_MAP_END()	
 private:
 	CMainDlg * m_pMainDlg; 
