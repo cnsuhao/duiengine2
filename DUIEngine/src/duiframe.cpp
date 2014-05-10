@@ -61,6 +61,7 @@ LRESULT CDuiFrame::DoFrameEvent(UINT uMsg,WPARAM wParam,LPARAM lParam)
 	case WM_ACTIVATE:
 		OnActivate(LOWORD(wParam));
 		break;
+	case WM_IME_STARTCOMPOSITION:
 	case WM_IME_CHAR:
 		OnFrameKeyEvent(uMsg,wParam,lParam);
 		break;

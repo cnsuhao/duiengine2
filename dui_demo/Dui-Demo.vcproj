@@ -56,7 +56,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\duiengine\include;..\duiengine\dependencies"
+				AdditionalIncludeDirectories="..\duiengine\include;..\duiengine\dependencies;&quot;..\scriptModule\luaScriptModule\lua-5.1&quot;;..\wke\include"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -83,7 +83,7 @@
 				AdditionalDependencies="zlib_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_$(ConfigurationName).exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\lib"
+				AdditionalLibraryDirectories="..\lib;..\wke\lib"
 				DelayLoadDLLs=""
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
@@ -246,7 +246,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				WholeProgramOptimization="true"
-				AdditionalIncludeDirectories="..\duiengine\include;..\duiengine\dependencies"
+				AdditionalIncludeDirectories="..\duiengine\include;..\duiengine\dependencies;&quot;..\scriptModule\luaScriptModule\lua-5.1&quot;;..\wke\include"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG"
 				ExceptionHandling="1"
 				RuntimeLibrary="0"
@@ -271,7 +271,7 @@
 				Name="VCLinkerTool"
 				OutputFile="$(OutDir)\$(ProjectName)_$(ConfigurationName).exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\lib;..\duiengine\dependencies\lib"
+				AdditionalLibraryDirectories="..\lib;..\wke\lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
@@ -433,7 +433,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\duiengine\include;..\duiengine\dependencies;&quot;..\scriptModule\luaScriptModule\lua-5.1&quot;"
+				AdditionalIncludeDirectories="..\duiengine\include;..\duiengine\dependencies;&quot;..\scriptModule\luaScriptModule\lua-5.1&quot;;..\wke\include"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;DLL_DUI"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -460,7 +460,7 @@
 				Name="VCLinkerTool"
 				OutputFile="$(OutDir)\$(ProjectName)_$(ConfigurationName).exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\lib"
+				AdditionalLibraryDirectories="..\lib;..\wke\lib"
 				DelayLoadDLLs=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -622,7 +622,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				WholeProgramOptimization="true"
-				AdditionalIncludeDirectories="..\duiengine\include;..\duiengine\dependencies;&quot;..\scriptModule\luaScriptModule\lua-5.1&quot;"
+				AdditionalIncludeDirectories="..\duiengine\include;..\duiengine\dependencies;&quot;..\scriptModule\luaScriptModule\lua-5.1&quot;;..\wke\include"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;DLL_DUI"
 				ExceptionHandling="1"
 				RuntimeLibrary="0"
@@ -647,7 +647,7 @@
 				Name="VCLinkerTool"
 				OutputFile="$(OutDir)\$(ProjectName)_$(ConfigurationName).exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\lib;..\duiengine\dependencies\lib;..\scriptModule\luaScriptModule\Release;&quot;..\scriptModule\luaScriptModule\tolua++-1.0.93\lib&quot;"
+				AdditionalLibraryDirectories="..\lib;..\wke\lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
@@ -809,7 +809,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\duiengine\include;..\duiengine\dependencies"
+				AdditionalIncludeDirectories="..\duiengine\include;..\duiengine\dependencies;&quot;..\scriptModule\luaScriptModule\lua-5.1&quot;;..\wke\include"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;USING_ATL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -835,7 +835,7 @@
 				Name="VCLinkerTool"
 				OutputFile="$(OutDir)\$(ProjectName)_$(ConfigurationName).exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\lib"
+				AdditionalLibraryDirectories="..\lib;..\wke\lib"
 				DelayLoadDLLs=""
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
@@ -972,6 +972,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\DuiWkeWebkit.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\MainDlg.cpp"
 				>
 			</File>
@@ -1072,6 +1076,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc"
 			>
+			<File
+				RelativePath=".\DuiWkeWebkit.h"
+				>
+			</File>
 			<File
 				RelativePath=".\MainDlg.h"
 				>

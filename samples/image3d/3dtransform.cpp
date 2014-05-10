@@ -299,7 +299,6 @@ void C3DTransform::Render(const PARAM3DTRANSFORM & param3d)
 				int pm2_16 = 0;
 				int pm1_16 = 0;
 				int pm0_16 = 0;
-				/*
 				__asm
 				{
 					fld    fpm3;
@@ -311,24 +310,7 @@ void C3DTransform::Render(const PARAM3DTRANSFORM & param3d)
 					fld    fpm0;
 					fistp  pm0_16;
 				}
-				*pDest++=(BYTE)((pm0_16*(*p0++) + pm1_16*(*p1++) + pm2_16*(*p2++) + pm3_16*(*p3++)) >> FIXP16_SHIFT);
-				*pDest++=(BYTE)((pm0_16*(*p0++) + pm1_16*(*p1++) + pm2_16*(*p2++) + pm3_16*(*p3++)) >> FIXP16_SHIFT);
-				*pDest++=(BYTE)((pm0_16*(*p0++) + pm1_16*(*p1++) + pm2_16*(*p2++) + pm3_16*(*p3++)) >> FIXP16_SHIFT);
-				if(nPixByte==4) *pDest++=(BYTE)((pm0_16*(*p0++) + pm1_16*(*p1++) + pm2_16*(*p2++) + pm3_16*(*p3++)) >> FIXP16_SHIFT);
-				*/
-
-				__asm
-				{
-					fld    fpm3;
-					fistp  pm3_16;
-					fld    fpm2;
-					fistp  pm2_16;
-					fld    fpm1;
-					fistp  pm1_16;
-					fld    fpm0;
-					fistp  pm0_16;
-				}
-				//pDest = pDstBits + X * nPixBytes;
+        pDest = pDstBits + X * nPixByte;
 				*pDest++=(BYTE)((pm0_16*(*p0++) + pm1_16*(*p1++) + pm2_16*(*p2++) + pm3_16*(*p3++)) >> FIXP16_SHIFT);
 				*pDest++=(BYTE)((pm0_16*(*p0++) + pm1_16*(*p1++) + pm2_16*(*p2++) + pm3_16*(*p3++)) >> FIXP16_SHIFT);
 				*pDest++=(BYTE)((pm0_16*(*p0++) + pm1_16*(*p1++) + pm2_16*(*p2++) + pm3_16*(*p3++)) >> FIXP16_SHIFT);
@@ -339,6 +321,8 @@ void C3DTransform::Render(const PARAM3DTRANSFORM & param3d)
 		pDstBits += nDstPitch;
 	}
 }
+
+
 
 BOOL C3DTransform::SetImage( LPBYTE pSour,LPBYTE pDest,int nWid,int nHei,int nBitsPixel )
 {
