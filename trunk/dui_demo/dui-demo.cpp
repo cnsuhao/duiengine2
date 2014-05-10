@@ -19,6 +19,7 @@
 
 #include "MainDlg.h"
 #include "ResModeSelDlg.h"
+#include "DuiWkeWebkit.h"
 
 //演示如何使用引擎外部实现的DUI控件
 class  CDuiListBox2 :public CDuiListBoxEx
@@ -121,6 +122,9 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR /*
 
 	//生成控件类厂并注册到系统
 	DuiWindowFactoryManager::getSingleton().RegisterFactory(TplDuiWindowFactory<CDuiListBox2>(),true);
+	DuiWindowFactoryManager::getSingleton().RegisterFactory(TplDuiWindowFactory<CDuiWkeWebkit>(),true);
+	
+	CDuiWkeWebkit::WkeWebkit_Init();
 
 	//生成皮肤类厂并注册到系统
 	DuiSkinFactoryManager::getSingleton().RegisterFactory(TplSkinFactory<CDuiVScrollBarSkin>());
@@ -214,6 +218,8 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR /*
 	CMenuWndHook::UnInstallHook();
 
 	DuiSkinPool::getSingleton().RemoveAll();//以DLL方式使用DuiEngine时，使用了自定义皮肤类型时需要先删除皮肤池才能正常释放皮肤类厂。
+
+	CDuiWkeWebkit::WkeWebkit_Shutdown();
 
 	//从系统中反注册控件及皮肤类厂并删除类厂对象
 	DuiWindowFactoryManager::getSingleton().UnregisterFactory(CDuiListBox2::GetClassName());

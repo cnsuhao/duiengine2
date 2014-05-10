@@ -16,6 +16,9 @@
           </listctrl>
           <button name="btn_ani" pos="-100,0,-56,30" class="normalbtn" alpha="200" animate="1">ani list</button>
         </tab>
+        <tab title="webkit">
+          <wkeWebkit pos="0,0,-0,-0" url="www.baidu.com"/>
+        </tab>
         <tab id="111" title="align">
           <include src="xml_page2"/>
         </tab>
