@@ -416,3 +416,21 @@ void CUIHander::OnBtnWebkitGo()
 		pWebkit->SetAttributeW("url",strUrl,FALSE);
 	}
 }
+
+void CUIHander::OnBtnWebkitBack()
+{
+	CDuiWkeWebkit *pWebkit= m_pMainDlg->FindChildByName2<CDuiWkeWebkit *>("wke_test");
+	if(pWebkit)
+	{
+		wkeGoBack(pWebkit->GetWebView());
+	}
+}
+
+void CUIHander::OnBtnWebkitFore()
+{
+	CDuiWkeWebkit *pWebkit= m_pMainDlg->FindChildByName2<CDuiWkeWebkit *>("wke_test");
+	if(pWebkit)
+	{
+		wkeGoForward(pWebkit->GetWebView());
+	}
+}

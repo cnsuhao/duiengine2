@@ -12,6 +12,7 @@ namespace DuiEngine
 		static void WkeWebkit_Init();
 		static void WkeWebkit_Shutdown();
 
+		wkeWebView	GetWebView(){return m_pWebView;}
 	protected:
 		virtual void onBufUpdated (const HDC hdc,int x, int y, int cx, int cy);
 	protected:

@@ -17,7 +17,9 @@
           <button name="btn_ani" pos="-100,0,-56,30" class="normalbtn" alpha="200" animate="1">ani list</button>
         </tab>
         <tab title="webkit">
-          <edit pos="0,0,-100,25" class="cls_edit" name="edit_url">www.baidu.com</edit>
+          <button pos="0,0,@30,25" name="btn_webkit_back">back</button>
+          <button pos="[5,0,@30,25" name="btn_webkit_fore">fore</button>
+          <edit pos="[5,0,-100,25" class="cls_edit" name="edit_url">www.baidu.com</edit>
           <button pos="-80,0,-0,25" name="btn_webkit_go">go</button>
           <wkeWebkit pos="0,30,-0,-0" url="www.baidu.com" name="wke_test"/>
         </tab>
