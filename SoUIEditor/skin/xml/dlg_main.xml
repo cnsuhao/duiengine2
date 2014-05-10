@@ -30,6 +30,7 @@
                   </header>
                 </listctrl>
                 <button name="prg_btn_add_file" pos="0,-25,100,-0">增加文件</button>
+                <colorpicker name="btn_color_picker1" pos="110,-25,200,-0" color="FF0000"/>
               </tab>
               <tab title="skins view">
                 <!--项目皮肤列表-->
