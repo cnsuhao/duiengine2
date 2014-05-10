@@ -3,6 +3,7 @@
 
 #include "MainDlg.h"
 #include "skinole/ImageOle.h"
+#include "DuiWkeWebkit.h"
 
 class CTestDropTarget:public IDropTarget
 {
@@ -401,4 +402,17 @@ void CUIHander::OnTimer( UINT_PTR uEventID )
 		}
 	}
 	SetMsgHandled(FALSE);
+}
+
+void CUIHander::OnBtnWebkitGo()
+{
+	CDuiWkeWebkit *pWebkit= m_pMainDlg->FindChildByName2<CDuiWkeWebkit *>("wke_test");
+	if(pWebkit)
+	{
+		CDuiStringW strUrl;
+		CDuiEdit *pEdit=m_pMainDlg->FindChildByName2<CDuiEdit *>("edit_url");
+		pEdit->GetWindowText(strUrl.GetBufferSetLength(255),255);
+		strUrl.ReleaseBuffer();
+		pWebkit->SetAttributeW("url",strUrl,FALSE);
+	}
 }
