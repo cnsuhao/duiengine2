@@ -55,13 +55,18 @@ void CMainDlg::OnRealWndDestroy( CDuiRealWnd *pRealWnd )
 		__super::OnRealWndDestroy(pRealWnd);
 	}
 }
+
+#include "ColourPopup.h"
+
 void CMainDlg::OnBtnClick_ProjectOpen()
 {
-	CFileDialogEx fileDlg(TRUE,_T("xml"),_T("index.xml"),6,_T("xml files(*.xml)\0*.xml\0All files (*.*)\0*.*\0\0"));
-	if(IDOK==fileDlg.DoModal())
-	{
-		OpenProject(fileDlg.m_szFileName);
-	}
+	CColourPopup *pdlg=new CColourPopup(m_hWnd,NULL);
+	pdlg->Create(CPoint(10,10),255,_T("Default"),_T("More Colors"));
+// 	CFileDialogEx fileDlg(TRUE,_T("xml"),_T("index.xml"),6,_T("xml files(*.xml)\0*.xml\0All files (*.*)\0*.*\0\0"));
+// 	if(IDOK==fileDlg.DoModal())
+// 	{
+// 		OpenProject(fileDlg.m_szFileName);
+// 	}
 }
 
 LRESULT CMainDlg::OnListCtrl_File_SelChanged( LPDUINMHDR pnmh )
