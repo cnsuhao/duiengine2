@@ -255,7 +255,6 @@ typedef struct tagDUINMLBSELCHANGE
     int nNewSel;
     int nOldSel;
     UINT uHoverID;
-    UINT uMsg;
 } DUINMLBSELCHANGE, *LPDUINMLBSELCHANGE;
 
 
@@ -350,6 +349,8 @@ typedef struct tagDUINMCALENDARSELECTDAY
 	WORD   wNewDay;
 } DUINMCALENDARSELECTDAY,*LPDUINMCALENDARSELECTDAY;
 
+
+#define DUINM_CBSELCHANGE 50
 
 //////////////////////////////////////////////////////////////////////////
 //  internal notify message
