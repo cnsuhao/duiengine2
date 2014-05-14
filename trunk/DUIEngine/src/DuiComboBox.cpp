@@ -62,8 +62,7 @@ CDuiComboBoxBase::CDuiComboBoxBase(void)
 	m_style.SetAttribute("align","left",TRUE);
 	m_style.SetAttribute("valign","middle",TRUE);
 
-	addEvent(DUINM_LBSELCHANGED);
-	addEvent(DUINM_LBSELCHANGING);
+	addEvent(DUINM_CBSELCHANGE);
 	addEvent(DUINM_RICHEDIT_NOTIFY);
 }
 
