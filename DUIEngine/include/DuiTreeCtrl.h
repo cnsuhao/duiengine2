@@ -85,6 +85,7 @@ public:
 
 	BOOL RemoveItem(HSTREEITEM hItem);
 	void RemoveAllItems();
+    void RemoveChildItems(HSTREEITEM hItem);
 
 	HSTREEITEM GetRootItem();
 	HSTREEITEM GetNextSiblingItem(HSTREEITEM hItem);
@@ -100,6 +101,7 @@ public:
 	LPARAM GetItemData(HSTREEITEM hItem) const;
 	BOOL SetItemData(HSTREEITEM hItem, LPARAM lParam);
 	BOOL ItemHasChildren(HSTREEITEM hItem);
+    void MarkItemHasChildren(HSTREEITEM hItem);
 
 	BOOL GetCheckState(HSTREEITEM hItem) const;	
 	BOOL SetCheckState(HSTREEITEM hItem, BOOL bCheck);	
