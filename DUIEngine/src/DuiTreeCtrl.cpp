@@ -37,6 +37,7 @@ CDuiTreeCtrl::CDuiTreeCtrl()
 , m_nItemPushDownBtn(DuiTVIBtn_None)
 {
 	m_bClipClient = TRUE;
+    addEvent(DUINM_TREECTRL_VITEM_EXPAND);
 }
 
 CDuiTreeCtrl::~CDuiTreeCtrl()
@@ -245,6 +246,16 @@ BOOL CDuiTreeCtrl::ItemHasChildren(HSTREEITEM hItem)
 	return  GetChildItem(hItem)!=NULL;
 }
 
+void CDuiTreeCtrl::MarkItemHasChildren(HSTREEITEM hItem)
+{
+    LPTVITEM pItem = GetItem(hItem);
+    if (pItem) {
+        pItem->bHasChildren = TRUE;
+        pItem->bCollapsed = TRUE;
+        CalaItemWidth(pItem);	
+    }
+}
+
 BOOL CDuiTreeCtrl::GetCheckState(HSTREEITEM hItem) const
 {
 	if (!m_bCheckBox) return FALSE;
@@ -308,7 +319,17 @@ BOOL CDuiTreeCtrl::Expand(HSTREEITEM hItem , UINT nCode)
 			SetViewSize(szView);
 			NotifyInvalidate();
 		}
-	}
+	} else {
+        DUINMTREECTRLITEMEXPAND nm;
+        nm.hdr.code = DUINM_TREECTRL_VITEM_EXPAND;
+        nm.hdr.hDuiWnd = GetDuiHwnd();
+        nm.hdr.idFrom = GetCmdID();
+        nm.hdr.pszNameFrom = GetName();
+        nm.item = hItem;
+
+        DuiNotify((LPDUINMHDR)&nm);
+    }
+
 	return bRet;
 }
 
@@ -471,6 +492,18 @@ void CDuiTreeCtrl::SetChildrenVisible(HSTREEITEM hItem,BOOL bVisible)
 		if(!pItem->bCollapsed) SetChildrenVisible(hChild,bVisible);
 		hChild=GetNextSiblingItem(hChild);
 	}
+}
+
+void CDuiTreeCtrl::RemoveChildItems(HSTREEITEM hItem)
+{
+    HSTREEITEM hChild = GetChildItem(hItem);
+    HSTREEITEM removeChild;
+    while (hChild) {
+        if(ItemHasChildren(hChild)) RemoveChildItems(hChild);
+        removeChild = hChild;
+        hChild = GetNextSiblingItem(hChild);
+        RemoveItem(removeChild);
+    }
 }
 
 void CDuiTreeCtrl::SetChildrenState(HSTREEITEM hItem, int nCheckValue)
