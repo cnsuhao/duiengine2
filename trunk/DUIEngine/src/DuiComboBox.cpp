@@ -318,6 +318,10 @@ LRESULT CDuiComboBoxBase::DuiNotify( LPDUINMHDR pnms )
 			if(pMsg->message != WM_KEYDOWN)
 				CloseUp();
 			return 0;
+		}else
+		{//其它事件把ID换一下。
+			pnms->idFrom=GetCmdID();
+			pnms->pszNameFrom=GetName();
 		}
 	}
 	return __super::DuiNotify(pnms);

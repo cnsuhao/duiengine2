@@ -140,7 +140,7 @@ public:
 	{
 		if(m_pListBox->SetCurSel(iSel))
 		{
-			OnSelChanged();
+			NotifyInvalidate();
 			return TRUE;
 		}
 		else
@@ -228,7 +228,7 @@ public:
 	{
 		if(m_pListBox->SetCurSel(iSel))
 		{
-			OnSelChanged();
+			NotifyInvalidate();
 			return TRUE;
 		}else
 		{
