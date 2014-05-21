@@ -90,12 +90,14 @@ namespace DuiEngine
 		void OnMouseLeave();
 		virtual BOOL Load(pugi::xml_node xmlNode);
 	protected:
+        CRect GenRectByPos(int col, int row);
 		CRect GetDayRect(WORD iDay);
 		WORD HitTest(CPoint  pt);
 		void DrawTitle(CDCHandle &dc);
 		void DrawDate(CDCHandle &dc);
 		void DrawDay(CDCHandle &dc,CRect & rcDay,WORD iDay );
 		void RedrawDay(WORD iDay);
+        void DrawOutDays(CDCHandle &dc);
 
 		bool OnTodayClick(CDuiWindow * pSender, LPDUINMHDR pNmhdr);
 

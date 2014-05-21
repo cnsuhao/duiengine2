@@ -365,6 +365,27 @@ void CDuiCalendar::DrawDay( CDCHandle &dc,CRect & rcDay,WORD iDay )
 	dc.SetTextColor(crTxt);
 }
 
+void CDuiCalendar::DrawOutDays(CDCHandle &dc)
+{
+    CRect rcDay;
+    int col  = CCalendarCore::WeekDay(m_iYear, m_iMonth, 1);
+    int row	 = CCalendarCore::DayWeek(m_iYear, m_iMonth, 1);
+    for (int i = 0; i < col; i++) {
+        rcDay = GenRectByPos(i, row);
+        if(m_pDaySkin) m_pDaySkin->Draw(dc,rcDay,2);
+        else CGdiAlpha::FillSolidRect(dc,rcDay,m_crDayBack);
+    }
+
+    int days = CCalendarCore::MonthDays(m_iYear, m_iMonth);
+    col = CCalendarCore::WeekDay(m_iYear, m_iMonth, days);
+    row	 = CCalendarCore::DayWeek(m_iYear, m_iMonth, days);
+    for (int n = col + 1; n < 7; n++) {
+        rcDay = GenRectByPos(n, row);
+        if(m_pDaySkin) m_pDaySkin->Draw(dc,rcDay,2);
+        else CGdiAlpha::FillSolidRect(dc,rcDay,m_crDayBack);
+    }
+}
+
 void CDuiCalendar::RedrawDay(WORD iDay )
 {
 	CRect rcDay=GetDayRect(iDay);
@@ -382,6 +403,7 @@ void CDuiCalendar::OnPaint(CDCHandle dc)
 	BeforePaint(dc,duidc);
 	DrawTitle(dc);
 	DrawDate(dc);
+    DrawOutDays(dc);
 	AfterPaint(dc,duidc);
 }
 
@@ -411,22 +433,27 @@ BOOL CDuiCalendar::SetDate(WORD iYear, WORD iMonth, WORD iDay)
 
 CRect CDuiCalendar::GetDayRect( WORD iDay )
 {
-	CRect rcClient;
-	GetClient(&rcClient);
-	rcClient.top+=m_nTitleHei;
-	rcClient.bottom-=m_nFooterHei;
-	
-	int weeks = CCalendarCore::MonthWeeks(m_iYear,m_iMonth);//计算出iMonth有几周
 	int col  = CCalendarCore::WeekDay(m_iYear, m_iMonth,iDay);//计算出iday是星期几
 	int row	 = CCalendarCore::DayWeek(m_iYear, m_iMonth,iDay);//计算出iday是第几周
-	
-	int nWid=rcClient.Width()/7;
-	int nHei=rcClient.Height()/weeks;
+    return GenRectByPos(col, row);
+}
 
-	CRect rc(0,0,nWid,nHei);
-	rc.OffsetRect(nWid*col,nHei*row);
-	rc.OffsetRect(rcClient.TopLeft());
-	return rc;
+CRect CDuiCalendar::GenRectByPos(int col, int row)
+{
+    CRect rcClient;
+    GetClient(&rcClient);
+    rcClient.top+=m_nTitleHei;
+    rcClient.bottom-=m_nFooterHei;
+
+    int weeks = CCalendarCore::MonthWeeks(m_iYear,m_iMonth);//计算出iMonth有几周
+
+    int nWid=rcClient.Width()/7;
+    int nHei=rcClient.Height()/weeks;
+
+    CRect rc(0,0,nWid,nHei);
+    rc.OffsetRect(nWid*col,nHei*row);
+    rc.OffsetRect(rcClient.TopLeft());
+    return rc;
 }
 
 WORD CDuiCalendar::HitTest(CPoint pt)
@@ -462,7 +489,7 @@ void CDuiCalendar::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	__super::OnLButtonDown(nFlags,point);
 	WORD day = HitTest(point);
-	if(day !=0 && day != m_iDay)
+	if(day !=0)
 	{
 		DUINMCALENDARSELECTDAY nm;
 		nm.hdr.hDuiWnd=m_hDuiWnd;

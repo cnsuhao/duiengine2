@@ -929,6 +929,7 @@ LRESULT CDuiWindow::OnWindowPosChanged(LPRECT lpRcContainer)
 	LRESULT lRet=0;
 	if(!(m_uPositionType & Pos_Float))	
 	{//窗口不是使用Move直接指定的坐标,计算出窗口位置
+		ClearLayoutState(); 
 		lRet=CalcPosition(lpRcContainer);
 	}
 	if(lRet==0)

@@ -988,6 +988,24 @@ BOOL CDuiDateEdit::ProcessMask(TCHAR& nChar, int nEndPos)
     return FALSE;
 }
 
+int CDuiDateEdit::GetYear()
+{
+    CDuiStringT strY = GetMaskedText(0, 4);
+    return wcstol(strY.GetBuffer(10), NULL, 10);
+}
+
+int CDuiDateEdit::GetMonth()
+{
+    CDuiStringT strM = GetMaskedText(5, 7);
+    return wcstol(strM.GetBuffer(10), NULL, 10);
+}
+
+int CDuiDateEdit::GetDay()
+{
+    CDuiStringT strD = GetMaskedText(8, 10);
+    return wcstol(strD.GetBuffer(10), NULL, 10);
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CDxTimeEdit class
 /////////////////////////////////////////////////////////////////////////////
@@ -1009,7 +1027,8 @@ int CDuiTimeEdit::OnCreate(LPVOID)
     if (nRet != 0)
         return nRet;
 
-	SetDateTime(CTime::GetCurrentTime());
+    CTime tm = CTime::GetCurrentTime();
+    SetTime(tm.GetHour(), tm.GetMinute());
 
     return 0;
 }
@@ -1091,6 +1110,7 @@ void CDuiTimeEdit::SetTime(int nHours, int nMins)
 
     CDuiStringW strText;
     strText.Format(L"%02d:%02d", m_nHours, m_nMins);
+    m_strDefault = strText;
     SetWindowText(strText);
 }
 

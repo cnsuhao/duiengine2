@@ -350,8 +350,8 @@ protected:
     DUIWIN_COLOR_ATTRIBUTE("crshadow", m_crShadow, FALSE)
 	DUIWIN_ENUM_ATTRIBUTE("mode", HRMODE, FALSE)
 		DUIWIN_ENUM_VALUE("vertical", HR_VERT)
-		DUIWIN_ENUM_VALUE("horizon", HR_VERT)
-		DUIWIN_ENUM_VALUE("tilt", HR_VERT)
+		DUIWIN_ENUM_VALUE("horizon", HR_HORZ)
+		DUIWIN_ENUM_VALUE("tilt", HR_TILT)
 	DUIWIN_ENUM_END(m_mode)
     DUIWIN_ENUM_ATTRIBUTE("style", int, FALSE)
     DUIWIN_ENUM_VALUE("solid", PS_SOLID)             // default

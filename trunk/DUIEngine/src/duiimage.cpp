@@ -406,7 +406,11 @@ BOOL CDuiImgX::LoadFromResource( HINSTANCE hInst,LPCTSTR pszType,LPCTSTR pszName
 
     pStm->Release();
     ::GlobalUnlock(hMem);
-
+	if(m_pImg && m_pImg->GetLastStatus() != Gdiplus::Ok)
+	{
+		delete m_pImg;
+		m_pImg=NULL;
+	}
     return m_pImg!=NULL;
 }
 
@@ -415,7 +419,12 @@ BOOL CDuiImgX::LoadFromFile( LPCTSTR pszPath )
     assert(m_pImg==NULL);
 	CDuiStringW strPath=DUI_CT2W(pszPath);
     m_pImg=Gdiplus::Image::FromFile(strPath);
-    return m_pImg!=NULL;
+	if (m_pImg && m_pImg->GetLastStatus() != Gdiplus::Ok) {
+		delete m_pImg; 
+		m_pImg = NULL; 
+	}
+
+    return m_pImg != NULL;
 }
 
 BOOL CDuiImgX::LoadFromMemory( LPVOID pBuf,DWORD dwSize )
