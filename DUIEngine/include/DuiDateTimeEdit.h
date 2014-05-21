@@ -110,6 +110,9 @@ public:
 
     virtual CDuiStringT GetWindowDateTime();
     virtual BOOL    ProcessMask(TCHAR& nChar, int nEndPos);
+    int GetYear();
+    int GetMonth();
+    int GetDay();
 protected:
     int             OnCreate(LPVOID);
 
@@ -144,6 +147,10 @@ protected:
 
 protected:
     int             OnCreate(LPVOID);
+
+    DUIWIN_DECLARE_ATTRIBUTES_BEGIN()
+        DUIWIN_INT_ATTRIBUTE("military", m_bMilitary, FALSE)
+    DUIWIN_DECLARE_ATTRIBUTES_END()
 
 protected:
    DUIWIN_BEGIN_MSG_MAP()
