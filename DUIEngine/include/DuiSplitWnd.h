@@ -54,6 +54,8 @@ public:
 
     BOOL HidePanel(int iPane);
 
+	BOOL IsPanelVisible(int iPane);
+
 protected:
 	virtual void UpdateChildrenPosition(){}//empty
 

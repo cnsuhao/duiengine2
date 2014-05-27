@@ -52,7 +52,7 @@ BOOL CDuiSplitWnd::ShowPanel(int iPane)
     if (iPane < 0 || iPane >= m_arrPane.GetCount()) return FALSE;
 
     m_arrPane[iPane]->SetVisible(TRUE);
-    Relayout(m_bColMode?layout_vert:layout_horz);
+	Relayout(m_bColMode?layout_horz:layout_vert);
     NotifyInvalidate();
     return TRUE;
 }
@@ -62,9 +62,15 @@ BOOL CDuiSplitWnd::HidePanel(int iPane)
     if (iPane < 0 || iPane >= m_arrPane.GetCount()) return FALSE;
 
     m_arrPane[iPane]->SetVisible(FALSE);
-    Relayout(m_bColMode?layout_vert:layout_horz);
+	Relayout(m_bColMode?layout_horz:layout_vert);
     NotifyInvalidate();
     return TRUE;
+}
+
+BOOL CDuiSplitWnd::IsPanelVisible( int iPane )
+{
+	if (iPane < 0 || iPane >= m_arrPane.GetCount()) return FALSE;
+	return m_arrPane[iPane]->IsVisible();
 }
 
 int CDuiSplitWnd::GetVisiblePanelCount()
@@ -465,5 +471,6 @@ void CDuiSplitWnd::Relayout(UINT uMode)
         delete [] pnPriority;
     }
 }
+
 
 }//namespace DuiEngine
