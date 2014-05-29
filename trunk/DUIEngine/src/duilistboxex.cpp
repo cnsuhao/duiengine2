@@ -692,7 +692,7 @@ LRESULT CDuiListBoxEx::OnMouseEvent( UINT uMsg,WPARAM wParam,LPARAM lParam )
 			}
 		}
 	}
-	if(uMsg==WM_LBUTTONUP && m_iHoverItem!=m_iSelItem)
+	if(uMsg==WM_LBUTTONUP && m_iHoverItem!=-1 && m_iHoverItem!=m_iSelItem)
 		NotifySelChange(m_iSelItem,m_iHoverItem);
 	return 0;
 }
