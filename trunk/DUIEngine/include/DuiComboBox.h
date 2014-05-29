@@ -140,7 +140,16 @@ public:
 	{
 		if(m_pListBox->SetCurSel(iSel))
 		{
-			NotifyInvalidate();
+			if(m_pEdit)
+			{
+				CDuiStringT strText=GetLBText(iSel);
+				m_pEdit->setMutedState(true);
+				m_pEdit->SetWindowText(DUI_CT2W(strText));
+				m_pEdit->setMutedState(false);
+			}else
+			{
+				NotifyInvalidate();
+			}
 			return TRUE;
 		}
 		else
@@ -228,7 +237,16 @@ public:
 	{
 		if(m_pListBox->SetCurSel(iSel))
 		{
-			NotifyInvalidate();
+			if(m_pEdit)
+			{
+				CDuiStringT strText=GetLBText(iSel);
+				m_pEdit->setMutedState(true);
+				m_pEdit->SetWindowText(DUI_CT2W(strText));
+				m_pEdit->setMutedState(false);
+			}else
+			{
+				NotifyInvalidate();
+			}
 			return TRUE;
 		}else
 		{

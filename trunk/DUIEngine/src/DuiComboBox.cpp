@@ -552,8 +552,10 @@ void CDuiComboBoxEx::OnSelChanged()
 		m_pEdit->setMutedState(true);
 		m_pEdit->SetWindowText(DUI_CT2W(strText));
 		m_pEdit->setMutedState(false);
+	}else
+	{
+		NotifyInvalidate();
 	}
-	NotifyInvalidate();
 	__super::OnSelChanged();
 }
 
