@@ -17,7 +17,7 @@ namespace DuiEngine
 
 	///////////////////////////////////////////////////////////////////////////////////////////
 
-	class DUI_EXP CDuiDropDownWnd : public CDuiHostWnd , public CDuiMessageFilter
+	class DUI_EXP CDuiDropDownWnd : public CDuiHostWnd , public CDuiMessageFilter 
 	{
 	public:
 		CDuiDropDownWnd(IDuiDropDownOwner* pOwner);
@@ -34,7 +34,11 @@ namespace DuiEngine
 		void OnActivateApp(BOOL bActive, DWORD dwThreadID);
 		int OnMouseActivate(HWND wndTopLevel, UINT nHitTest, UINT message);
 
-		virtual void OnFinalMessage(HWND);
+// 		virtual void OnFinalMessage(HWND);
+        virtual void OnFinalRelease(){
+            if(IsWindow()) DestroyWindow();
+            delete this;
+        }
 
 		virtual BOOL PreTranslateMessage(MSG* pMsg);
 	protected:
