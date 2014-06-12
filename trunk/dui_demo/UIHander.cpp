@@ -233,7 +233,8 @@ LRESULT CUIHander::OnComboListItemNotify( LPDUINMHDR pNHdr )
 		CDuiComboBoxEx *pCombobox=(CDuiComboBoxEx*)m_pMainDlg->FindChildByCmdID(1310);
 		CDuiListBoxEx *pListBox=(CDuiListBoxEx*)pItemNHdr->pHostDuiWin;
 		int iItem=pListBox->GetItemObjIndex(pItemNHdr->pItem);
-		pCombobox->DeleteString(iItem);
+// 		pCombobox->DeleteString(iItem);
+        pCombobox->CloseUp();
 	}
 	return S_OK;
 }
@@ -256,6 +257,8 @@ void CUIHander::OnIECtrl()
 
 void CUIHander::OnDuiMenu()
 {
+	CDuiComboBox *pCbx = m_pMainDlg->FindChildByName2<CDuiComboBox *>("IDC_CB_TEST");
+	pCbx->SetCurSel(3);
 	CPoint pt; 
 	GetCursorPos(&pt);
 	CDuiMenu menu;  
@@ -371,7 +374,12 @@ bool CUIHander::OnListHeaderClick( CDuiWindow * pSender, LPDUINMHDR pNmhdr )
 
 void CUIHander::OnBtnAniList()
 {
-	DuiMessageBox(NULL,L"msgbox",L"test",MB_OK);
+	CDuiSplitWnd_Row *pSplitRow = m_pMainDlg->FindChildByName2<CDuiSplitWnd_Row*>("split_row");
+	if(pSplitRow->IsPanelVisible(0))
+		pSplitRow->HidePanel(0);
+	else
+		pSplitRow->ShowPanel(0);
+	return;
 
 	CDuiWindow *pList=m_pMainDlg->FindChildByName("lc_test");
 	if(pList)

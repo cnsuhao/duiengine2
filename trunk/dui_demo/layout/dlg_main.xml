@@ -44,7 +44,7 @@
           <hotkey name="ctrl_hk2" pos="460,20,560,45" class="cls_edit"/>
           <progress name="IDC_PROGTEST" pos="200,100,-10,115" bgskin="prog_bg" posskin="prog_bar" value="20" min="0" max="100" showpercent="1"/>
           <sliderbar name="IDC_SLIDERTEST" pos="%20.5,130" alpha="200" width="200" bgskin="prog_bg" posskin="prog_bar" thumbskin="slidethumb" value="20" min="0" max="100"/>
-          <comboboxex show="1" id="1310" pos="100,40,300,64" dropdown="0" dropheight="250" class="cls_edit" font="8300" dotted="0" cursel="0" itempanel="1"  id_text="1" id_icon="2">
+          <comboboxex show="1" id="1310" pos="100,40,300,64" dropdown="0" dropheight="250" class="cls_edit" font="8300" dotted="0" cursel="-1" itempanel="1"  id_text="1" id_icon="2">
             <liststyle  class="cls_edit" crbg="FF0000" itemheight="50">
               <template skin="skin_webbtn_forward">
                 <text id="1" pos="5,2" crtext="ff0000"/>
@@ -63,7 +63,7 @@
               <item text="combobox.item6" icon="6" data="100"/>
             </items>
           </comboboxex>
-	        <combobox name="IDC_CB_TEST" pos="100,70,300,94" dropdown="1" dropheight="250" class="cls_edit" dotted="0" animtime="200">
+	        <combobox name="IDC_CB_TEST" pos="100,70,300,94" dropdown="1" dropheight="100" class="cls_edit" dotted="0" animtime="200">
             <liststyle class="cls_edit"  iconskin="icon3" itemheight="30" crtext="000000" crseltext="FFFFFF" critembg="FFFFFF" critemselbg="000088"/>
             <editstyle inset="5,0,5,0" crtext="000000" align="left" crbg="FFFFFF"/>
             <items>
@@ -103,7 +103,7 @@
         </tab>
         <tab id="116" title="attribute">
           <button class="normalbtn" tabstop="1"  name="测试" font2="bold:1;italic:1;underline:1;adding:15;facename:隶书" pos="20,50,200,80">reposition测试</button>
-          <comboboxex show="1" pos="100,140,300,164" dropdown="0" dropheight="250" class="cls_edit" font="8300" dotted="0" cursel="0" id_text="1" id_icon="2">
+          <comboboxex show="1" pos="100,140,300,164" dropdown="0" dropheight="250" class="cls_edit" font="8300" dotted="0" cursel="-1" id_text="1" id_icon="2">
             <liststyle  class="cls_edit" crbg="FF0000" itemheight="50" >
               <template skin="skin_webbtn_forward">
                 <text id="1" pos="5,2" crtext="ff0000"/>
@@ -239,13 +239,13 @@
 		  		</treectrl> 	
         </tab>        
         <tab id="120" title="splitwnd">
-          <splitrow id="1180" pos="10,0,-10,-10" skinsep="skin_split_horz" sepsize="6">
+          <splitrow name="split_row" pos="10,0,-10,-10" skinsep="skin_split_horz" sepsize="6">
             <pane idealsize="250" minsize="30" priority="0">
               <flash pos="0,0,-0,-0" name="ctrl_flash" url="http://swf.sc.chinaz.com//Files/DownLoad/flash2/201401/flash2524.swf" delayinit="1"/>
               <text pos="|-50,|-20">pane1 priority=2</text>
             </pane>
             <pane idealsize="400" minsize="30" priority="1">
-              <splitcol id="1180" pos="0,0,-0,-0" skinsep="skin_split_vert" sepsize="6">
+              <splitcol name="split_col" pos="0,0,-0,-0" skinsep="skin_split_vert" sepsize="6">
                 <pane idealsize="200" minsize="30" priority="0" crbg="000088">
 <!--                   <mediaplayer pos="0,0,-0,-0" name="ctrl_media" url="E:\DUI.WORK\x-framework\bin\fullscreen.wmv" delayinit="1"/> -->
                   <text pos="|-50,|-20">pane2.1 priority=0</text>
