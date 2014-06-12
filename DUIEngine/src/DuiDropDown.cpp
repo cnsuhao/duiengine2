@@ -16,12 +16,12 @@ namespace DuiEngine
 	{
 		MsgFilterUnregister(m_pOwner->GetDropDownOwner()->GetContainer()->GetHostHwnd());
 	}
-
-	void CDuiDropDownWnd::OnFinalMessage(HWND hWnd)
-	{
-		__super::OnFinalMessage(hWnd);
-		delete this;
-	}
+// 
+// 	void CDuiDropDownWnd::OnFinalMessage(HWND hWnd)
+// 	{
+// 		__super::OnFinalMessage(hWnd);
+// 		delete this;
+// 	}
 
 	void CDuiDropDownWnd::OnKillFocus( HWND wndFocus )
 	{
@@ -82,7 +82,6 @@ namespace DuiEngine
 	{
 		m_uExitCode=uCode;
 		HWND hWnd=m_pOwner->GetDropDownOwner()->GetContainer()->GetHostHwnd();
-		DestroyWindow();
 		SetActiveWindow(hWnd);
 	}
 

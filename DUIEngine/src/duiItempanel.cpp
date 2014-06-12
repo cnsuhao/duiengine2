@@ -61,16 +61,16 @@ LRESULT CDuiItemPanel::DoFrameEvent(UINT uMsg,WPARAM wParam,LPARAM lParam)
     LRESULT lRet=__super::DoFrameEvent(uMsg,wParam,lParam);
     if(IsMsgHandled())
     {
-        DUINMITEMMOUSEEVENT nms;
-        nms.hdr.code=DUINM_ITEMMOUSEEVENT;
-        nms.hdr.hDuiWnd=m_pFrmHost->GetDuiHwnd();
-        nms.hdr.idFrom=m_pFrmHost->GetCmdID();
-		nms.hdr.pszNameFrom= m_pFrmHost->GetName();
-        nms.pItem=this;
-        nms.uMsg=uMsg;
-        nms.wParam=wParam;
-        nms.lParam=lParam;
-        m_pFrmHost->DuiNotify((LPDUINMHDR)&nms);
+//         DUINMITEMMOUSEEVENT nms;
+//         nms.hdr.code=DUINM_ITEMMOUSEEVENT;
+//         nms.hdr.hDuiWnd=m_pFrmHost->GetDuiHwnd();
+//         nms.hdr.idFrom=m_pFrmHost->GetCmdID();
+// 		nms.hdr.pszNameFrom= m_pFrmHost->GetName();
+//         nms.pItem=this;
+//         nms.uMsg=uMsg;
+//         nms.wParam=wParam;
+//         nms.lParam=lParam;
+//         m_pFrmHost->DuiNotify((LPDUINMHDR)&nms);
     }
     Release();
     return lRet;
