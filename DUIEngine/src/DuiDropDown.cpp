@@ -82,6 +82,7 @@ namespace DuiEngine
 	{
 		m_uExitCode=uCode;
 		HWND hWnd=m_pOwner->GetDropDownOwner()->GetContainer()->GetHostHwnd();
+		DestroyWindow();
 		SetActiveWindow(hWnd);
 	}
 
