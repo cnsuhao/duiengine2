@@ -120,4 +120,9 @@ namespace DuiEngine
 		return MA_NOACTIVATEANDEAT;
 	}
 
+    void CDuiDropDownWnd::OnClose()
+    {
+        DefWindowProc();
+    }
+
 }//end of namespace DuiEngine
