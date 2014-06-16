@@ -69,6 +69,7 @@ void CDuiSkinImgList::Draw(HDC dc, CRect rcDraw, DWORD dwState,BYTE byAlpha)
 	if(m_bCache)
 	{
 		PrepareCache(dc,rcDraw.Size());
+		if(!m_memdc) return;
 		BLENDFUNCTION bf= {AC_SRC_OVER,0,0xFF,AC_SRC_ALPHA};
 		CRect rcClip;
 		GetClipBox(dc,&rcClip);
