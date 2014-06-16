@@ -339,7 +339,7 @@ void CDuiImageWnd::OnPaint(CDCHandle dc)
         m_pSkin->Draw(dc, m_rcWindow, m_nSubImageID,m_byAlpha);
 }
 
-BOOL CDuiImageWnd::SetSkin(CDuiSkinBase *pSkin,int nSubID/*=0*/)
+BOOL CDuiImageWnd::SetSkin(CDuiSkinBase *pSkin,int nSubID/*=0*/,BOOL bAutoFree/*=TRUE*/)
 {
     if(IsVisible(TRUE)) NotifyInvalidate();
     if(m_bManaged && m_pSkin)
@@ -349,9 +349,15 @@ BOOL CDuiImageWnd::SetSkin(CDuiSkinBase *pSkin,int nSubID/*=0*/)
     }
     if(!pSkin) return FALSE;
     m_pSkin=pSkin;
-    m_pSkin->AddRef();
-    m_bManaged=TRUE;
     m_nSubImageID=nSubID;
+    if(bAutoFree)
+    {
+        m_pSkin->AddRef();
+        m_bManaged=TRUE;
+    }else
+    {
+        m_bManaged=FALSE;
+    }
 
 	DUIASSERT(GetParent());
 
