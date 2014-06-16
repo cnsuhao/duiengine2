@@ -199,7 +199,7 @@ public:
 
     void OnPaint(CDCHandle dc);
 
-    BOOL SetSkin(CDuiSkinBase *pSkin,int nSubID=0);
+    BOOL SetSkin(CDuiSkinBase *pSkin,int nSubID=0,BOOL bAutoFree=TRUE);
 
     BOOL SetIcon(int nSubID);
 
