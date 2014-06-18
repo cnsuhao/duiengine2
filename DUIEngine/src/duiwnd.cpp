@@ -1134,7 +1134,7 @@ void CDuiWindow::OnNcPaint(CDCHandle dc)
             {
                 crBg = m_style.m_crBgHover;
             }
-            if (CLR_INVALID != crBg) CGdiAlpha::FillSolidRect(dc,&rcClient, crBg);
+            if (CLR_INVALID != crBg) CGdiAlpha::FillSolidRect(dc,&m_rcWindow, crBg);
         }
         if(bGetDC) PaintForeground(dc,&m_rcWindow);
         dc.RestoreDC(nSavedDC);
