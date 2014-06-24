@@ -35,10 +35,7 @@ namespace DuiEngine
 		int OnMouseActivate(HWND wndTopLevel, UINT nHitTest, UINT message);
         void OnClose();
 
-        virtual void OnFinalRelease(){
-            if(IsWindow()) DestroyWindow();
-            delete this;
-        }
+ 		virtual void OnFinalMessage(HWND){delete this;}
 
 		virtual BOOL PreTranslateMessage(MSG* pMsg);
 	protected:
