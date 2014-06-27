@@ -29,8 +29,8 @@ namespace DuiEngine
 		void OnLButtonDown(UINT nFlags, CPoint point);
 		void OnLButtonUp(UINT nFlags, CPoint point);
 		void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-		void OnKillFocus(HWND wndFocus);
 		void OnDestroy();
+        void OnActivate(UINT nState, BOOL bMinimized, HWND wndOther){}//×èÖ¹´°¿Ú¼¤»î
 		void OnActivateApp(BOOL bActive, DWORD dwThreadID);
 		int OnMouseActivate(HWND wndTopLevel, UINT nHitTest, UINT message);
         void OnClose();
@@ -47,9 +47,9 @@ namespace DuiEngine
 			MSG_WM_LBUTTONDOWN(OnLButtonDown)
 			MSG_WM_LBUTTONUP(OnLButtonUp)
 			MSG_WM_KEYDOWN(OnKeyDown);
-			MSG_WM_KILLFOCUS(OnKillFocus)
 			MSG_WM_DESTROY(OnDestroy)
 			MSG_WM_CLOSE(OnClose)
+			MSG_WM_ACTIVATE(OnActivate)
 			MSG_WM_ACTIVATEAPP(OnActivateApp)
 			MSG_WM_MOUSEACTIVATE(OnMouseActivate)
 			CHAIN_MSG_MAP(CDuiHostWnd)
