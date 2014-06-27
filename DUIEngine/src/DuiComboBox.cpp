@@ -297,7 +297,6 @@ void CDuiComboBoxBase::CloseUp()
 	if(m_pDropDownWnd)
 	{
 	    m_pDropDownWnd->PostMessage(WM_CLOSE);
-		//m_pDropDownWnd->EndDropDown(IDCANCEL);
 	}
 }
 

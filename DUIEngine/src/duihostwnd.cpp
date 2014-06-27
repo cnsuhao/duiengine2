@@ -482,7 +482,6 @@ void CDuiHostWnd::OnMouseLeave()
 
 void CDuiHostWnd::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    SetFocus();
     DoFrameEvent(WM_LBUTTONDOWN,nFlags,MAKELPARAM(point.x,point.y));
 }
 

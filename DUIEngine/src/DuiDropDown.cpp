@@ -16,20 +16,6 @@ namespace DuiEngine
 	{
 		MsgFilterUnregister(m_pOwner->GetDropDownOwner()->GetContainer()->GetHostHwnd());
 	}
-// 
-// 	void CDuiDropDownWnd::OnFinalMessage(HWND hWnd)
-// 	{
-// 		__super::OnFinalMessage(hWnd);
-// 		delete this;
-// 	}
-
-	void CDuiDropDownWnd::OnKillFocus( HWND wndFocus )
-	{
-		if(wndFocus != m_hWnd)
-		{
-			EndDropDown();
-		}
-	}
 
 	BOOL CDuiDropDownWnd::Create(LPCRECT lpRect ,LPVOID lParam,DWORD dwStyle,DWORD dwExStyle)
 	{
